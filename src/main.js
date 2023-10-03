@@ -23,8 +23,30 @@ function Main() {
     getData();
   });
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    let searchedValue = event.target.search.value;
+    const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchedValue}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+       if (data.meals) {
+         let filteredValue = data.meals.filter(function (item) {
+           return item.strMeal
+             .toLowerCase()
+             .includes(searchedValue.toLowerCase());
+         });
+
+         setItems(filteredValue);
+       } else {
+        setItems([]);
+       }
+
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -50,28 +72,21 @@ function Main() {
           margin: "1rem 0 0 1rem",
         }}
       >
-        {items.map(function (item) {
-          return (
-            <CardComp
-            image={item.strMealThumb}
-            title={item.strMeal}
-            description={item.strInstructions}
-            Category={item.strCategory}
-            />
-          );
-        })}
+        {items.length !== 0 ? (
+          items.map(function (item) {
+            return (
+              <CardComp
+                image={item.strMealThumb}
+                title={item.strMeal}
+                description={item.strInstructions}
+              />
+            );
+          })
+        ) : (
+          <h3 style={{marginTop:"2rem",color:"red"}}>Meal not found</h3>
+        )}
       </div>
     </>
   );
 }
 export default Main;
-
-// function handleSubmit(event) {
-//   event.preventDefault();
-
-//   let searchedValue = event.target.search.value;
-//   let filteredValue = items.filter(function (item) {
-//     return item.title.toLowerCase().includes(searchedValue.toLowerCase());
-//   });
-//   setItems(filteredValue);
-// }

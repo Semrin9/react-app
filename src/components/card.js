@@ -19,7 +19,7 @@ function CardComp(props) {
         <Card.Img variant="top" src={props.image} />
         <Card.Body>
           <Card.Title style={{ textAlign: "center"}}>{props.title}</Card.Title>
-          <Card.Text style={{ fontWeight: "bold", textAlign:"center",fontSize:"20px"}}>Category: {props.Category}</Card.Text>
+          {/* <Card.Text style={{ fontWeight: "bold", textAlign:"center",fontSize:"20px"}}>Category: {props.Category}</Card.Text> */}
           <Button variant="primary" onClick={handleShow}>Show Recipe</Button>
         </Card.Body>
       </Card>
