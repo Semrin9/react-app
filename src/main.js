@@ -19,7 +19,7 @@ let filteredValue = data.filter(function (item) {
   }
   return (
     <>
-      <Form className="d-flex" onSubmit={handleSubmit}>
+      <Form className="d-flex" style={{padding: "0.5rem 0", maxWidth: "600px", margin: "auto"}} onSubmit={handleSubmit}>
         <Form.Control
           type="search"
           placeholder="Search here.."
