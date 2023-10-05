@@ -83,7 +83,7 @@ function Main() {
             );
           })
         ) : (
-          <h3 style={{marginTop:"2rem",color:"red"}}>Meal not found</h3>
+          <h3 style={{marginTop:"2rem"}}>Meal not found</h3>
         )}
       </div>
     </>
